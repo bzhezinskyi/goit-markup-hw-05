@@ -1,12 +1,3 @@
-/* Основний колір тексту #212121 */
-/* Додатковий крлір тексту #757575 */
-/* Колір фону #f5f5f5 */
-/* Додатковий колір фону #F5F4FA */
-/* Колір футера #2F303A */
-/* Колір наведення #2196F3 */
-/* кольори лого #000000, #2196F3 */
-/* Колір посилань футер rgba(255, 255, 255, 0.6); */
-
 :root {
 	--text-color: #757575;
 	--additional-text-color: #212121;
@@ -21,6 +12,8 @@
 	--border-header-color: #ececec;
 	--icon-color: #afb1b8;
 	--background-links-company: rgba(255, 255, 255, 0.1);
+	--background-hidden: rgba(33, 150, 243, 0.9);
+	--cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -115,6 +108,10 @@ li {
 	display: flex;
 }
 
+.site-nav .item {
+	position: relative;
+}
+
 .site-nav .item + .item {
 	margin-left: 50px;
 }
@@ -127,8 +124,20 @@ li {
 	text-decoration: none;
 }
 
-.site-nav .link.current {
+.site-nav .current {
 	color: var(--activation-color);
+}
+
+.current::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -28px;
+	width: 100%;
+	height: 4px;
+
+	background: #2196f3;
+	border-radius: 2px;
 }
 
 .header-contacts {
@@ -282,12 +291,41 @@ li {
 }
 
 .work .item {
+	position: relative;
 	width: calc((100%-60px) / 3);
 	margin-right: 30px;
 }
 
 .work .item:nth-child(3n) {
 	margin-right: 0px;
+}
+
+.work .work-image {
+	height: 100%;
+}
+
+.work .box {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background: rgba(47, 48, 58, 0.8);
+}
+
+.work .box-titel {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+
+	color: var(--header-bacground-color);
 }
 
 .team {
@@ -437,6 +475,62 @@ li {
 	fill: currentColor;
 }
 
+/* Модальне вікно */
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	background: rgba(0, 0, 0, 0.2);
+	opacity: 1;
+	transition: opacity 250ms var(--cubic);
+}
+
+.backdrop.is-hidden .modal {
+	transform: translate(-50%, -50%) scale(0.5);
+}
+
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	width: 528px;
+	height: 581px;
+
+	background-color: var(--header-bacground-color);
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+
+	transform: translate(-50%, -50%) scale(1);
+	transition: transform 250ms var(--cubic);
+}
+
+.modal .btn {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 30px;
+	height: 30px;
+
+	border-radius: 50%;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: var(--header-bacground-color);
+}
+
+.backdrop.is-hidden {
+	visibility: visible;
+	opacity: 0;
+	pointer-events: none;
+}
+
 /* portfolio */
 /* Проекты */
 
@@ -518,6 +612,42 @@ li {
 .projects .link:hover,
 .projects .link:focus {
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.projects .box-image {
+	position: relative;
+	overflow: hidden;
+}
+
+.projects .hidden {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	transform: translateY(100%);
+	transition: transform 250ms var(--cubic);
+
+	background: var(--background-hidden);
+}
+
+.projects .link:hover .hidden,
+.projects .link:focus .hidden {
+	transform: translateY(0);
+}
+
+.projects .hidden-text {
+	display: inline-block;
+	font-size: 18px;
+	line-height: 1.56;
+	letter-spacing: 0.03em;
+
+	margin-top: 63px;
+	margin-right: 24px;
+	margin-bottom: 63px;
+	margin-left: 24px;
+
+	color: var(--header-bacground-color);
 }
 
 .projects .photo-text {
