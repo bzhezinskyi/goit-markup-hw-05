@@ -164,6 +164,11 @@ li {
 	list-style: none;
 }
 
+.site-nav .link,
+.header-contacts .link {
+	transition: color 250ms var(--cubic);
+}
+
 .site-nav .link:hover,
 .site-nav .link:focus,
 .header-contacts .link:hover,
@@ -401,6 +406,7 @@ li {
 	border-radius: 50%;
 
 	color: var(--icon-color);
+	transition: color 250ms var(--cubic), background-color 250ms var(--cubic);
 }
 
 .social-links .link:hover,
@@ -457,6 +463,8 @@ li {
 	border-radius: 4px;
 	width: 100%;
 	height: 100%;
+
+	transition: color 250ms var(--cubic);
 }
 
 .client .link:hover,
@@ -547,6 +555,7 @@ li {
 
 .filter .item {
 	margin-right: 8px;
+	transition: box-shadow 250ms var(--cubic);
 }
 
 .filter .item:last-child {
@@ -574,6 +583,7 @@ li {
 
 	cursor: pointer;
 	font-family: inherit;
+	transition: color 250ms var(--cubic), background-color 250ms var(--cubic);
 }
 
 .filter .btn:hover,
@@ -591,6 +601,7 @@ li {
 	display: inline-block;
 	text-decoration: none;
 	color: inherit;
+	transition: box-shadow 250ms var(--cubic);
 }
 
 .projects .item {
@@ -712,6 +723,7 @@ li {
 	color: rgba(255, 255, 255, 0.6);
 	font-style: normal;
 	text-decoration: none;
+	transition: color 250ms var(--cubic);
 }
 
 .footer-contacts .link:hover,
@@ -754,6 +766,7 @@ li {
 
 	color: var(--header-bacground-color);
 	background-color: var(--background-links-company);
+	transition: background-color 250ms var(--cubic);
 }
 
 .social-links-company .link:hover,
